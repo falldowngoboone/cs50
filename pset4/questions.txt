@@ -1,0 +1,60 @@
+0.  BMP:  4,294,967,296 colors (up to 32-bits per pixel)
+    GIF:  256 colors (up to 8-bits per pixel indexed from 24-bit RGB color space)
+    JPEG: 16,777,216 colors (24-bits per pixel)
+    PNG:  281,474,976,710,656 colors (48-bit truecolor)
+        
+1.  GIF
+    
+2.  Lossy compression compresses a file destructively, eliminating unnecessary
+    pixel information over large chunks. Lossless compression compresses chunks
+    of equal pixels, but does not destroy any original pixel information.
+    
+3.  JPEG
+ 
+4.  When a file is "deleted" on a FAT file system, the filename is changed to 
+    indicate the file's space in the directory can be recycled, then the space
+    allocated to the file is moved to the hard drive's list of free space. 
+    
+5.  Either use an operating system that utilizes an encrypted file scheme wherein
+    you can simply erase the encryption key, or overwrite all of the readable
+    space with 0's or another acceptable pattern.
+    
+6.  stdint.h defines a stricter set of fixed-width integers necessary to enhance 
+    the portability of programs, especially in environments where only certain
+    types of integers are supported by the hardware.
+
+7.  They all define the exact width, in bits, of a block of data.
+    
+8.  BYTE  = 1 byte  (8-bits, unsigned)
+    DWORD = 4 bytes (32-bits unsigned)
+    LONG  = 4 bytes (32-bits signed)
+    WORD  = 2 bytes (16-bits unsigned)
+    
+9.  0x4d42 (or, 'MB')
+
+10. bfSize is the total size, in bytes, of the bitmap file, whereas the biSize 
+    is the size, in bytes, of the BITMAPINFOHEADER.
+
+11. If biHeight is negative, then the bitmap is a top-down DIB; its origin is the
+    upper-left corner (as it should be in a sane world).
+   
+12. biBitCount specifies the BMP's color depth (i.e., bits per pixel).
+    
+13. fopen might return NULL in copy.c:37 because the user doesn't have permission
+    to write to the current place in memory, or the file could exceed the amount
+    of memory available.
+
+14. 1 refers to the number of times we want to read a block of a specified size.
+    Since the sizes we have specified are specific to the file type (the bitmap 
+    header types and the RGBTRIPPLE), we only want to read that specific size 
+    once per call to the fread function.
+
+15. If bi.biWidth is 3, padding is 3 bytes (one RGBTRIPPLE).
+
+16. fseek moves the file pointer to a specific point in a file being read. In this
+    case, it's used to skip ahead in the inptr file a distance equal to the size
+    of the padding from the current position held by the pointer (see next question).
+    
+17. SEEK_CUR is a constant referring to the current pointer's position in a file.
+
+18. Whodunit? Rob Bowden. You should be ashamed.

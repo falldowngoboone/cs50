@@ -1,0 +1,67 @@
+0.  According to the Oxford English Dictionary, this term is "an artificial 
+    long word said to mean a lung disease caused by inhaling very fine ash 
+    and sand dust."
+    
+1.  According to the man page, `getrusage` "returns resource usage measures for
+    `who`," where `who` is either `RUSAGE_SELF`(resource statistics for the sum
+    of all resources used in the process), `RUSAGE_CHILDREN` (resource
+    statistics for all descendants of the calling process), or `RUSAGE_THREAD`
+    (resource statistics for the calling thread).
+    
+2.  16 variables
+
+3.  The `usage` argument of `getrusage` is a pointer, presumably to save memory
+    (it is a rather large struct, and when `getrusage` was made, computers were
+    powered by hamsters running in metal wheels, or something like that).
+
+4.  After validating usage and loading up a dictionary, the text file is first
+    opened, then a for loop executes that reads a single character at a time
+    with `fgetc(fp)` until the end of the text file is encountered.
+    
+    If the current character, `c`, is either a letter or an apostrophe with an
+    index greater than 0 (the beginning of the current word), then the character
+    is indexed into a string, `word`. The index used by the string is incremented
+    and validated against the maximum allowable length.
+
+    If the index is greater than the allowable length, then the word is too long
+    to make sense, and the rest of the string is ignored by a `while` loop that
+    executes `fgetc` until either the end of the file or a non-alphabetical
+    character is encountered.
+
+    If the character `c` is neither a letter nor an apostrophe, it is checked
+    to see if it is a number, which is then ignored through the use of `fgetc`
+    in a `while` loop, much like the latter technique for words that are too long.
+
+    Finally, if the character `c` is neither a letter, an apostrophe, nor a
+    number, then it must be the end of a word. The string `word` is terminated 
+    with the NULL terminator, the `words` counter is incremented, and the word is
+    then checked to see if it is misspelled.
+    
+5.  If we're checking for words longer than 45 characters long in the code, then
+    we will probably have an instance where that condition is met. If we were
+    using fscanf, it could possibly write an invalid string to the `word` string,
+    causing a buffer overflow.
+    
+6.  Declaring the arguments as constants makes it impossible for the values
+    passed in to be modified, and it also serves as a hint to the author to not
+    modify them in any way. Some of the information I've read suggests that the
+    use of constants allows the compiler to optimize code, but real world
+    examples have called this into question.
+    
+7.  The first data structure is a node that contains a `word` property as well
+    as a node pointer `next`. The second data structure is a struct called
+    `Collection` that contains a hash table and a `size` property that keeps
+    track of the number of words stored in the hash table.
+    
+8.  0.08 total
+
+9.  No changes. That hash function I found was killer. It's my understanding
+    that bitwise operations are crazy fast. I'm very much interested in
+    learning more about them. It seems from a Stack Overflow entry I'm reading
+    that bit operations take up only one CPU cycle, which doesn't make a
+    difference comparing two single operations, but really adds up in something
+    like this.
+    
+10. I honestly don't know how I could make this any faster. Maybe run it on
+    my native OSX? I don't know if that would make any difference. I'm pretty
+    surprised how fast it is.
